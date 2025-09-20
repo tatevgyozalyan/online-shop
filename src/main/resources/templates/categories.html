@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}" xmlns="http://www.w3.org/1999/html">
+<head>
+<title>Categories</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<section>
+<h1>Categories</h1>
+<ul>
+    <li th:each="category : ${categories}">
+        <a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}"></a>
+    </li>
+</ul>
+</section>
+</body>
+</html>

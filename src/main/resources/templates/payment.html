@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<h1>Payment</h1>
+<p>Simulated Payment Form</p>
+<form th:action="@{/payment/process/{orderId}(orderId=${orderId})}" method="post">
+    <!-- In real app, integrate payment gateway here -->
+    <button type="submit">Pay</button>
+</form>
+</body>
+</html>

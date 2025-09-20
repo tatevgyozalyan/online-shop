@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <title>Order Detail</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<section>
+<h1>Order Detail</h1>
+<p>Status: <span th:text="${order.status}"></span></p>
+<p>Total: <span th:text="${order.total}"></span></p>
+<ul>
+    <li th:each="item : ${order.orderItems}">
+        <span th:text="${item.product.name}"></span> - Quantity: <span th:text="${item.quantity}"></span> - Price: <span th:text="${item.price}"></span>
+    </li>
+</ul>
+<th:block th:if="${order.status == 'PENDING'}">
+    <a th:href="@{/payment/{id}(id=${order.id})}">Pay Now</a>
+</th:block>
+</section>
+</body>
+</html>
