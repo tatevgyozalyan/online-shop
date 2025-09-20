@@ -28,3 +28,14 @@ a:hover {
 form {
     display: inline;
 }
+/* Show dropdown on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* optional, adjust spacing */
+}
+
+/* Optional: smooth transition */
+.dropdown-menu {
+    transition: all 0.3s ease;
+}
+

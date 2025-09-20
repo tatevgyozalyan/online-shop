@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -45,4 +46,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 }
 
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

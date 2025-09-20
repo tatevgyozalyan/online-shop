@@ -15,6 +15,18 @@ INSERT INTO product (name, description, price, image_url, category_id) VALUES
                                                                            ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2),
                                                                            ('Laptop', 'High performance laptop', 999.99, 'image1.jpeg', 1),
                                                                            ('Smartphone', 'Latest model smartphone', 599.99, 'image1.jpeg', 1),
+                                                                           ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2),
+                                                                           ('Laptop', 'High performance laptop', 999.99, 'image1.jpeg', 1),
+                                                                           ('Smartphone', 'Latest model smartphone', 599.99, 'image1.jpeg', 1),
+                                                                           ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2),
+                                                                           ('Laptop', 'High performance laptop', 999.99, 'image1.jpeg', 1),
+                                                                           ('Smartphone', 'Latest model smartphone', 599.99, 'image1.jpeg', 1),
+                                                                           ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2),
+                                                                           ('Laptop', 'High performance laptop', 999.99, 'image1.jpeg', 1),
+                                                                           ('Smartphone', 'Latest model smartphone', 599.99, 'image1.jpeg', 1),
+                                                                           ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2),
+                                                                           ('Laptop', 'High performance laptop', 999.99, 'image1.jpeg', 1),
+                                                                           ('Smartphone', 'Latest model smartphone', 599.99, 'image1.jpeg', 1),
                                                                            ('Novel', 'Bestselling novel', 19.99, 'image1.jpeg', 2);
 
 -- Sample user (password is 'password' encoded with BCrypt, use a tool to generate)

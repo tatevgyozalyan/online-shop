@@ -6,7 +6,9 @@
 </head>
 <body>
 <section>
-<h1>Your Orders</h1>
+    <a th:href="@{/cart}" th:text="Back"></a>
+    <h1>Your Orders</h1>
+
 <ul>
     <li th:each="order : ${orders}">
         Order ID: <a th:href="@{/orders/{id}(id=${order.id})}" th:text="${order.id}"></a> - Status: <span th:text="${order.status}"></span> - Total: <span th:text="${order.total}"></span>

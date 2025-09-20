@@ -27,6 +27,10 @@
         </div>
 
         <button type="submit" class="btn btn-success w-100">Register</button>
+<!--        <div class="alert alert-warning" role="alert" th:text="${error}">-->
+<!--            <strong>Warning!</strong>-->
+<!--        </div>-->
+        <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
     </form>
 </section>
 </body>
