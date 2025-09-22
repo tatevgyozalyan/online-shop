@@ -22,10 +22,13 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;
-        Optional<User> existingPerson = userService.findByEmail(user.getEmail());
+        Optional<User> existingEmail = userService.findByEmail(user.getEmail());
+        Optional<User> existingUsername = userService.findByUsername(user.getUsername());
 
-        if (existingPerson.isPresent() && existingPerson.get().getId() != user.getId()) {
-            errors.rejectValue("email", "", "Email already taken");
+        if (existingEmail.isPresent() || existingUsername.isPresent()
+//                && existingEmail.get().getId() != user.getId()
+        ) {
+            errors.rejectValue("email", "", "Email or Username already taken");
         }
     }
 }

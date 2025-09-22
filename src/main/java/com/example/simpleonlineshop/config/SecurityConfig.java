@@ -14,14 +14,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/search", "/products", "/categories/**", "/products/**", "/css/**", "/register").permitAll()
+                        .requestMatchers("/","/.well-known/**", "/logout" , "/loginAfterReg/**", "/search", "/products", "/categories/**", "/products/**", "/css/**", "/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
+
                         .permitAll()
                 )
                 .logout(logout -> logout
+                                .logoutSuccessUrl("/products")
 //                        .deleteCookies("JSESSIONID")
                         .permitAll()
 //                ).sessionManagement(session -> session

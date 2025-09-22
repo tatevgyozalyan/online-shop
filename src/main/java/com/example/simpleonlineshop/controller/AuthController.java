@@ -3,6 +3,7 @@ package com.example.simpleonlineshop.controller;
 import com.example.simpleonlineshop.entity.User;
 import com.example.simpleonlineshop.service.UserService;
 import com.example.simpleonlineshop.validator.UserValidator;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping // added
@@ -48,7 +47,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(Model model, @ModelAttribute @Valid User user, BindingResult bindingResult) {
+    public String register(Model model, @ModelAttribute @Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         userValidator.validate(user, bindingResult);
         if (!bindingResult.getAllErrors().isEmpty()) {
             String error = bindingResult.getAllErrors().get(0).getDefaultMessage();
@@ -56,10 +55,20 @@ public class AuthController {
             return "register";
         }
         userService.registerUser(user);
-        return "redirect:/login";
+        return "redirect:/loginAfterReg?loginAfterReg=true";
     }
-    @GetMapping("/logout")
+    @GetMapping("/loginAfterReg")
+    public String loginAfterReg(@RequestParam boolean loginAfterReg, Model model) {
+        if (loginAfterReg) {
+            model.addAttribute("success_msg", "Successfully registered!");
+            return "login";
+        }
+        return "register";
+    }
+
+
+    @PostMapping("/logout")
     public String logout() {
-        return "index";
+        return "products";
     }
 }
