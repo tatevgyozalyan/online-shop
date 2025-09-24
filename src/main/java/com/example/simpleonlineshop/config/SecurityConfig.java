@@ -19,11 +19,12 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-
                         .permitAll()
                 )
                 .logout(logout -> logout
-                                .logoutSuccessUrl("/products")
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/products?logout=true")
+//                                .logoutSuccessUrl("/products")
 //                        .deleteCookies("JSESSIONID")
                         .permitAll()
 //                ).sessionManagement(session -> session

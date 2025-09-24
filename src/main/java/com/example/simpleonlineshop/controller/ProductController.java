@@ -24,8 +24,11 @@ public class ProductController {
 
     @GetMapping("/products")
     public String listProducts(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "0") int page, @RequestParam(value = "logout", required = false) String logout,
             Model model) {
+        if (logout != null) {
+            model.addAttribute("logout_msg", "Logged out successfully!");
+        }
 
         List<Product> products = productService.getAllProducts(page, SIZE);
         long total = productService.getTotalProducts();

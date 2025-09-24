@@ -68,7 +68,8 @@ public class AuthController {
 
 
     @PostMapping("/logout")
-    public String logout() {
+    public String logout(Model model) {
+        model.addAttribute("logout_msg", "Successfully logged out!");
         return "products";
     }
 }

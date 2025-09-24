@@ -15,6 +15,7 @@ public class PaymentController {
 
     @GetMapping("/payment/{orderId}")
     public String paymentForm(@PathVariable Long orderId) {
+
         return "payment"; // Simple form to "pay"
     }
 
