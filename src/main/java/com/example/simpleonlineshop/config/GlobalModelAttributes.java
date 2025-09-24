@@ -23,8 +23,4 @@ public class GlobalModelAttributes {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
     }
-//    @ModelAttribute
-//    public void authorized(Model model) {
-//        model.addAttribute("isAuthorized", true);
-//    }
 }

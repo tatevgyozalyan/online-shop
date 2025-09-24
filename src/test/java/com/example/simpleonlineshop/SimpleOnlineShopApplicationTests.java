@@ -42,12 +42,10 @@ class SimpleOnlineShopApplicationTests {
 
     @Test
     void processPayment_ShouldCallServiceAndRedirect() throws Exception {
-        // Act & Assert
         mockMvc.perform(post("/payment/process/{orderId}", 1L))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/orders"));
 
-        // Verify service call
         verify(paymentService, times(1)).processPayment(1L);
     }
 

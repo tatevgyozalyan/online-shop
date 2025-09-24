@@ -3,14 +3,11 @@ package com.example.simpleonlineshop.controller;
 import com.example.simpleonlineshop.entity.User;
 import com.example.simpleonlineshop.service.UserService;
 import com.example.simpleonlineshop.validator.UserValidator;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,7 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(Model model, @ModelAttribute @Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String register(Model model, @ModelAttribute @Valid User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
         if (!bindingResult.getAllErrors().isEmpty()) {
             String error = bindingResult.getAllErrors().get(0).getDefaultMessage();

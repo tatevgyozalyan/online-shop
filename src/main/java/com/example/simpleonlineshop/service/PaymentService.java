@@ -27,7 +27,7 @@ public class PaymentService {
         Payment payment = new Payment();
         payment.setOrder(order);
         payment.setAmount(order.getTotal());
-        payment.setStatus("COMPLETED"); // For demo, assume success
+        payment.setStatus("COMPLETED");
         payment.setPaymentDate(LocalDateTime.now());
 
         payment = paymentRepository.save(payment);

@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -21,25 +20,12 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    public User addUser(User user){
-//        user.setRegistrationDate(LocalDateTime.now());
-////         create a cart for every new user
-//        Cart cart = new Cart();
-//        user.setCart(cart);
-//        cart.setUser(user);
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        return userRepository.save(user);
-//    }
 public void registerUser(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     user.setRoles("ROLE_USER");
     userRepository.save(user);
 }
 
-//    public boolean validateUser(String email, String password) {
-//        Optional<User> user = userRepository.findByEmail(email);
-//        return user.isPresent() && user.get().getPassword().equals(password);
-//    }
 @Override
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return userRepository.findByUsername(username)
