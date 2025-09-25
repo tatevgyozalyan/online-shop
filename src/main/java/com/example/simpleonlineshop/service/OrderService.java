@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -63,11 +64,22 @@ public class OrderService {
         return orderRepository.findByUser(user);
     }
 
+    //get rid of this
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
 
     public void saveOrder(Order order) {
         orderRepository.save(order);
+    }
+
+    public Optional<Order> getOrderByIdAndUsername(Long orderId, String username) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        if (optionalOrder.isPresent() &&
+                optionalOrder.get().getUser().getUsername().equals(username)) {
+            return optionalOrder;
+        }
+        return Optional.empty();
+
     }
 }
