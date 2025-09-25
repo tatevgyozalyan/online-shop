@@ -37,6 +37,7 @@ public class CategoryController {
                                @RequestParam(defaultValue = "0") int page,
                                @RequestParam(defaultValue = "0") int size,
                                Model model) {
+        if (size < 1) size = 10;
         Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
         Page<Product> productPage = productService.getProductsByCategory(id, pageable);
 
