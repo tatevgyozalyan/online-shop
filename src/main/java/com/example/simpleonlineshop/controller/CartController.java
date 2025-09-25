@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class CartController {
 
@@ -40,8 +42,14 @@ public class CartController {
     }
 
     @PostMapping("/cart/remove/{id}")
-    public String removeFromCart(@PathVariable Long id) {
-        cartService.removeFromCart(id);
+    public String removeFromCart(@PathVariable Long id, Principal principal) {
+        String username = principal.getName(); // get currently logged-in username
+        boolean removed = cartService.removeFromCart(id, username);
+        if (!removed) {
+            // error message if user tries to delete another user's item
+            // will do later
+        }
         return "redirect:/cart";
     }
+
 }

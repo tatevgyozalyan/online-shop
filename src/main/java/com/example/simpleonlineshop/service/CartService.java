@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -28,9 +29,18 @@ public class CartService {
         return cartItemRepository.findByUser(user);
     }
 
-    public void removeFromCart(Long cartItemId) {
-        cartItemRepository.deleteById(cartItemId);
+    public boolean removeFromCart(Long cartItemId, String username) {
+        Optional<CartItem> cartItemOpt = cartItemRepository.findById(cartItemId);
+        if (cartItemOpt.isPresent()) {
+            CartItem cartItem = cartItemOpt.get();
+            if (cartItem.getUser().getUsername().equals(username)) {
+                cartItemRepository.delete(cartItem);
+                return true;
+            }
+        }
+        return false;
     }
+
 
     public void clearCart(User user) {
         List<CartItem> items = getCartItems(user);
