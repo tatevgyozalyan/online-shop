@@ -65,8 +65,8 @@ public class OrderService {
     }
 
     //get rid of this
-    public Order getOrderById(Long id) {
-        return orderRepository.findById(id).orElse(null);
+    public Optional<Order> getOrderById(Long id) {
+        return orderRepository.findById(id);
     }
 
     public void saveOrder(Order order) {

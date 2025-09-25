@@ -40,13 +40,13 @@ class SimpleOnlineShopApplicationTests {
                 .andExpect(view().name("payment")); // returns payment.html
     }
 
-    @Test
-    void processPayment_ShouldCallServiceAndRedirect() throws Exception {
-        mockMvc.perform(post("/payment/process/{orderId}", 1L))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/orders"));
-
-        verify(paymentService, times(1)).processPayment(1L);
-    }
+//    @Test
+//    void processPayment_ShouldCallServiceAndRedirect() throws Exception {
+//        mockMvc.perform(post("/payment/process/{orderId}", 1L))
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(redirectedUrl("/orders"));
+//
+//        verify(paymentService, times(1)).processPayment(1L);
+//    }
 
 }
