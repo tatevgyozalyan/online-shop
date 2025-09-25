@@ -15,11 +15,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
@@ -35,19 +35,6 @@ public class ProductService {
 
     public Page<Product> findByProductName(String name, Pageable pageable) {
         return productRepository.findByNameContainingIgnoreCase(name, pageable);
-
-    }
-
-    public long getTotalProductsByName(String name) {
-        return entityManager.createQuery("SELECT COUNT(p) FROM Product p WHERE LOWER(p.name) LIKE LOWER(:param)", Long.class)
-                .setParameter("param", "%" + name + "%")
-                .getSingleResult();
-    }
-
-    public long getTotalProductsByCategory(Long id) {
-        return entityManager.createQuery("SELECT COUNT(p) FROM Product p WHERE p.category.id = :param", Long.class)
-                .setParameter("param", id)
-                .getSingleResult();
 
     }
 }

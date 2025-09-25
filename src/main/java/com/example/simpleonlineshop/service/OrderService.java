@@ -8,6 +8,7 @@ import com.example.simpleonlineshop.entity.OrderItem;
 import com.example.simpleonlineshop.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class OrderService {
     @Autowired
     private CartService cartService;
 
+    @Transactional
     public Order createOrderFromCart(User user) {
         List<CartItem> cartItems = cartService.getCartItems(user);
         if (cartItems.isEmpty()) {

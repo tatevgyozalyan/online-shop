@@ -5,6 +5,7 @@ import com.example.simpleonlineshop.entity.Order;
 import com.example.simpleonlineshop.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -18,6 +19,7 @@ public class PaymentService {
     @Autowired
     private OrderService orderService;
 
+    @Transactional
     public boolean processPayment(Long orderId, String username) {
         Optional<Order> optionalOrder = orderService.getOrderById(orderId);
         if (optionalOrder.isEmpty()){

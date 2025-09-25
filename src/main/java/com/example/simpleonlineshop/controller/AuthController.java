@@ -24,7 +24,6 @@ public class AuthController {
 
     @GetMapping("/")
     public String notAuth(){
-//        return "index";
         return "redirect:/products";
 
     }
