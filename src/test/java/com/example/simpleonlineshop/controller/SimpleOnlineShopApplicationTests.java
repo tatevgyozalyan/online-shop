@@ -1,4 +1,4 @@
-package com.example.simpleonlineshop;
+package com.example.simpleonlineshop.controller;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
